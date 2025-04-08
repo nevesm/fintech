@@ -1,5 +1,8 @@
 package br.com.fiap.fintech.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Card {
     private String cardFriendlyName;
     private String cardLastFourDigits;
@@ -28,5 +31,4 @@ public class Card {
     // Getters e Setters
     public String getCardFriendlyName() { return cardFriendlyName; }
     public void setCardFriendlyName(String cardFriendlyName) { this.cardFriendlyName = cardFriendlyName; }
-    // Adicionar outros getters e setters conforme necessário
 }

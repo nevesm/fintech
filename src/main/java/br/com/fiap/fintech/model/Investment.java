@@ -1,5 +1,10 @@
 package br.com.fiap.fintech.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Investment {
     private String name;
     private double value;
@@ -9,6 +14,9 @@ public class Investment {
     private String risk;
     private String status;
     private User owner;
+    @Id
+    @GeneratedValue
+    private Long id;
 
     public Investment() {
     }
@@ -33,5 +41,13 @@ public class Investment {
         System.out.println("Risco: " + this.risk);
         System.out.println("Status: " + this.status);
         System.out.println("Proprietário: " + this.owner.getName());
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

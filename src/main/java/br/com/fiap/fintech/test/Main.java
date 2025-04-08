@@ -1,50 +1,33 @@
 package br.com.fiap.fintech.test;
-
 import br.com.fiap.fintech.model.*;
-
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) {
-        // Criando um usuário
-        User user = new User("Marcus Neves", "marcus.neves@fiap.com.br");
+        User firstUser = new User("Marcus Neves", "marcus.neves@fiap.com.br");
+        User secondUser = new User("Flavio Neves", "flavio.neves@fiap.com.br");
 
-        // Criando um banco
-        Bank bank = new Bank("Banco Itau", "001", "1234", "56789", "0");
-        bank.getBankAccountDetails();
+        Card firstCard = new Card("Mastercard Uniclass Black", "1234", "Mastercard", "Crédito", firstUser);
+        Card secondCard = new Card("Visa Platinum", "5678", "Visa", "Crédito", secondUser);
+        firstCard.getCardDetails();
+        secondCard.getCardDetails();
 
-        // Criando um cartão
-        Card card = new Card("Mastercard Uniclass Black", "1234", "mastercard", "Crédito", user);
-        card.getCardDetails();
+        firstUser.login();
+        secondUser.login();
 
-        // Invocando métodos
-        user.login();
+        Account firstAccount = new Account("Banco do Brasil", 001, "4541", 1050906, 2, 1000.00, firstUser);
+        Account secondAccount = new Account("Itaú", 002, "1234", 5678901, 3, 1000.00, secondUser);
 
-        // Criando uma transação de receita
-        IncomeTransaction incomeTransaction = new IncomeTransaction(
-                "Salário",
-                5000.00,
-                LocalDateTime.now(),
-                "Receitas",
-                "Empresa XYZ"
-        );
+        Deposit firstAccountDeposit = new Deposit(LocalDateTime.now(), 1000.00, "Depósito em conta");
+        firstAccountDeposit.execute(firstAccount);
 
-        System.out.println("### Receita ###");
-        incomeTransaction.getTransactionDetails(UUID.randomUUID());
+        Withdrawal firstAccountWithdrawal = new Withdrawal(LocalDateTime.now(), 500.00, "Saque em caixa eletrônico");
+        firstAccountWithdrawal.execute(firstAccount);
 
-        // Criando uma transação de despesa com conta bancária
-        ExpenseTransaction expenseTransaction = new ExpenseTransaction(
-                "Pagamento de Aluguel",
-                1500.00,
-                LocalDateTime.now(),
-                "Despesas",
-                bank,
-                "Imobiliária ABC"
-        );
+        Transfer firstAccountTransferToSecondAccount = new Transfer(LocalDateTime.now(), 1000.00, "Transferência entre contas", secondAccount);
+        firstAccountTransferToSecondAccount.execute(firstAccount);
 
-        System.out.println("\n### Despesa ###");
-        expenseTransaction.getTransactionDetails(UUID.randomUUID());
+        System.out.println("Saldo da conta de " + firstUser.getName() + ": R$" + firstAccount.getBalance());
+        System.out.println("Saldo da conta de " + secondUser.getName() + ": R$" + secondAccount.getBalance());
     }
 }

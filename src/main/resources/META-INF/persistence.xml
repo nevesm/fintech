@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+  <persistence-unit name="default">
+    <class>br.com.fiap.fintech.model.Account</class>
+    <class>br.com.fiap.fintech.model.TreasuryDirect</class>
+    <class>br.com.fiap.fintech.model.Withdrawal</class>
+    <class>br.com.fiap.fintech.model.Card</class>
+    <class>br.com.fiap.fintech.model.CDB</class>
+    <class>br.com.fiap.fintech.model.Deposit</class>
+    <class>br.com.fiap.fintech.model.Investment</class>
+    <class>br.com.fiap.fintech.model.Operation</class>
+    <class>br.com.fiap.fintech.model.Transfer</class>
+    <class>br.com.fiap.fintech.model.User</class>
+    <properties>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>
+

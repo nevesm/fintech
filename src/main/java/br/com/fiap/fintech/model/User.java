@@ -1,9 +1,15 @@
 package br.com.fiap.fintech.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.UUID;
 
+@Entity
 public class User {
-    private final UUID id = UUID.randomUUID();
+    @Id
+    @GeneratedValue
+    private UUID id = UUID.randomUUID();
     private String name;
     private String email;
 
@@ -20,5 +26,13 @@ public class User {
     // Métodos de exemplo
     public void login() {
         System.out.println(name + " está logando com o e-mail: " + email);
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public UUID getId() {
+        return id;
     }
 }
